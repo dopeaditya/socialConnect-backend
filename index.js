@@ -18,6 +18,10 @@ app.get("/",(req,res)=>{
     res.send("Backend working")
 })
 
+app.get("/test",(req,res)=>{
+    res.send("Testing success")
+})
+
 const PORT = process.env.PORT
 
 app.listen(PORT, ()=>{

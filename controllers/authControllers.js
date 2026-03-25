@@ -8,7 +8,7 @@ export const registerUser = async(req,res)=>{
     try {
         const {username, email, phone, password} = req.body
 
-        const existUser = await User.findOne({name:username})
+        const existUser = await User.findOne({email:email})
 
         if(existUser){
             return res.status(400).json({message:"User already exists with the given email"})
@@ -29,10 +29,6 @@ export const registerUser = async(req,res)=>{
   "Welcome to SocialConnect 🎉",
   `
   <div style="font-family: Arial, sans-serif; background-color: #f4f6f8; padding: 20px;">
-
-        await sendEmail(email,"Welcome to our website",
-            <div style="font-family: Arial, sans-serif; background-color: #f4f6f8; padding: 20px;">
-
     
     <div style="max-width: 500px; margin: auto; background: #ffffff; border-radius: 10px; padding: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
       
@@ -55,7 +51,7 @@ export const registerUser = async(req,res)=>{
       </div>
       
       <p style="font-size: 14px; color: #777;">
-        If you have any questions, feel free to reply to this email. We're here to help!
+        If you have any questions, feel free to reply to this email.
       </p>
       
       <hr style="margin: 20px 0;" />
@@ -66,13 +62,9 @@ export const registerUser = async(req,res)=>{
     
     </div>
   
-
   </div>
-  
-
-  </div>`
-        );
-
+  `
+);
         
 
         res.status(201).json({
@@ -107,6 +99,14 @@ export const loginUser = async(req,res)=>{
         }
 
         const token = await jwt.sign({id:existUser._id,name:existUser.name},process.env.SECRET_KEY);
+
+        //response.cookie(name,value, {options})
+        res.cookie("myCookie",token,{
+            httpOnly:true,
+            secure:false,
+            sameSite:'lax', //strict lax null
+            maxAge:7*24*60*60*1000
+        })
 
         res.status(200).json({
             success:true,

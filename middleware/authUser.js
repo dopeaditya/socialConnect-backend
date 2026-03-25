@@ -4,7 +4,8 @@ const secretKey = process.env.SECRET_KEY
 
 const authUser = async(req,res,next)=>{
     try {
-        const token = req.header("auth-token");
+        //const token = req.header("auth-token");
+        const token = req.cookies.myCookie;
 
         if(!token)
             return res.status(401).json({

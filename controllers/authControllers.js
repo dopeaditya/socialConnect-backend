@@ -23,11 +23,16 @@ export const registerUser = async(req,res)=>{
                                         password:hashedPassword
         });
 
+<<<<<<< HEAD
         await sendEmail(
   email,
   "Welcome to SocialConnect 🎉",
   `
   <div style="font-family: Arial, sans-serif; background-color: #f4f6f8; padding: 20px;">
+=======
+        await sendEmail(email,"Welcome to our website",
+            `<div style="font-family: Arial, sans-serif; background-color: #f4f6f8; padding: 20px;">
+>>>>>>> c7310ec (Updated email part in controller file)
     
     <div style="max-width: 500px; margin: auto; background: #ffffff; border-radius: 10px; padding: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
       
@@ -61,9 +66,14 @@ export const registerUser = async(req,res)=>{
     
     </div>
   
+<<<<<<< HEAD
   </div>
   `
 );
+=======
+  </div>`
+        );
+>>>>>>> c7310ec (Updated email part in controller file)
 
         
 

@@ -5,11 +5,37 @@ const postSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
     },
-    image:{
-        type:String,
-
-    },
+    //array of objects
+    media:[
+        {
+            mediaType:{
+                type:String
+            },
+            mediaUrl:{
+                type:String
+            }
+        }
+    ],
+    likes:[{
+        likedBy:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User'
+        }
+    }],
     caption:{
+        type:String,
+        required:true
+    },
+    likesCount:{
+        type:Number,
+        default:0
+    },
+    
+    commentsCount:{
+        type:Number,
+        default:0
+    },
+    location:{
         type:String
     }
 },
@@ -18,3 +44,8 @@ const postSchema = new mongoose.Schema({
 
 const Post = mongoose.model('Post', postSchema);
 export default Post;
+
+
+// ["fdfd","jdd","dksl"] => [String]
+
+// [{mediaType:String, mediaUrl:String}] => [{mediaType:{},  mediaUrl:{}}]

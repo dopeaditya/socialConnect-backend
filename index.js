@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import connectDB from './db.js';
 import authRouter from './routes/authRoutes.js'
 import cookieParser from 'cookie-parser';
+import postRoutes from './routes/postRoutes.js';
 
 dotenv.config()
 
@@ -19,6 +20,7 @@ app.use(cors({
 ))   // {origin:'', credentials:true}
 
 app.use('/users',authRouter)
+app.use('/posts', postRoutes)
 
 
 app.get("/",(req,res)=>{
